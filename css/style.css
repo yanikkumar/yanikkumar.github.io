@@ -519,3 +519,58 @@ body.no-hover [data-bs-toggle="popover"] {
     animation: 1.5s ease 0s infinite beat;
   }
 }
+
+/* Form Loading Spinner Styles */
+.form-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  border-radius: inherit;
+}
+
+.form-loading-overlay.show {
+  display: flex;
+}
+
+.form-loading-spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-border 0.75s linear infinite;
+  color: #858585;
+}
+
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-loading-text {
+  margin-left: 0.75rem;
+  color: #858585;
+  font-size: 1rem;
+}
+
+.form-submitting {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.form-submitting input,
+.form-submitting textarea,
+.form-submitting button {
+  pointer-events: none;
+}
