@@ -21,13 +21,13 @@ $(document).ready(function () {
     return new bootstrap.Tooltip(tooltipTriggerEl, {
       html: true,
       placement: "top",
-      trigger: "hover focus",
+      trigger: "hover focus click",
       animation: true,
     });
   });
 
   // Prevent default on divs if needed
-  $('[role="button"]').on("click", function (e) {
-    e.preventDefault();
-  });
+  // $('[role="button"]').on("click", function (e) {
+  //   e.preventDefault();
+  // });
 });

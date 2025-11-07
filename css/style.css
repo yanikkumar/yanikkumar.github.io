@@ -133,6 +133,15 @@ a:hover {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .tooltip {
+    max-width: 80vw; /* Prevent overflow on narrow screens */
+  }
+  .tooltip .tooltip-inner {
+    font-size: 0.75rem; /* Smaller text if needed */
+  }
+}
+
 /* Hover effect on trigger image for advanced interactivity */
 .feature-img[role="button"]:hover {
   transform: scale(1.05); /* Subtle zoom */
