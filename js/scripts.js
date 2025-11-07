@@ -25,9 +25,7 @@ $(document).ready(function () {
   // Function to hide all tooltips
   function hideAllTooltips() {
     tooltips.forEach((tt) => {
-      if (tt.getTipElement()) {
-        tt.hide();
-      }
+      tt.hide(); // Always attempt hide, even if not visible
     });
   }
 
@@ -42,6 +40,8 @@ $(document).ready(function () {
   // Recursive function for auto-cycle
   function showNext(index) {
     if (!isAutoMode) return; // Stop if auto mode is off
+
+    console.log(`Showing tooltip ${index}`); // Debug: Check console for sequence (remove later)
 
     showSpecificTooltip(index);
 
@@ -63,11 +63,20 @@ $(document).ready(function () {
     }, nextDelay);
   }
 
-  // Initialize tooltips with click support
+  // Initialize tooltips with auto placement for better positioning
   tooltipTriggerList.forEach((tooltipTriggerEl, index) => {
+    // Special case for heart: Use 'bottom' on desktop for more space
+    let placement = "auto";
+    if (
+      tooltipTriggerEl.classList.contains("heart") &&
+      window.innerWidth > 768
+    ) {
+      placement = "bottom";
+    }
+
     const tooltip = new bootstrap.Tooltip(tooltipTriggerEl, {
       html: true,
-      placement: "top",
+      placement: placement,
       trigger: "hover focus click", // Keeps mobile/desktop support
       animation: true,
     });
@@ -83,12 +92,15 @@ $(document).ready(function () {
       }
     });
 
-    // Optional: Hide on outside click (for better UX)
+    // Hide on outside click (improved: check against all triggers)
     $(document).on("click", function (e) {
-      if (
-        !$(e.target).closest(tooltipTriggerEl).length &&
-        tooltip.getTipElement()
-      ) {
+      let shouldHide = true;
+      tooltipTriggerList.forEach((trigger) => {
+        if ($(e.target).closest(trigger).length > 0) {
+          shouldHide = false;
+        }
+      });
+      if (shouldHide && tooltip.getTipElement()) {
         tooltip.hide();
       }
     });
@@ -97,15 +109,19 @@ $(document).ready(function () {
   // Stop auto on scroll
   $(window).on("scroll", function () {
     if (isAutoMode) {
+      console.log("Auto stopped due to scroll"); // Debug
       isAutoMode = false;
       hideAllTooltips();
     }
   });
 
-  // Start auto-cycle immediately (starts with Developer)
-  if (tooltips.length > 0) {
-    showNext(0);
-  }
+  // Start auto-cycle on window load (ensures images/animations settle, no delay feel)
+  $(window).on("load", function () {
+    if (tooltips.length > 0 && isAutoMode) {
+      console.log("Starting auto-cycle"); // Debug
+      showNext(0);
+    }
+  });
 
   // Prevent default on divs if needed (unchanged, but now won't interfere with tooltips)
   $('[role="button"]').on("click", function (e) {
