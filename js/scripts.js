@@ -27,7 +27,7 @@ $(document).ready(function () {
   });
 
   // Prevent default on divs if needed
-  // $('[role="button"]').on("click", function (e) {
-  //   e.preventDefault();
-  // });
+  $('[role="button"]').on("click", function (e) {
+    e.preventDefault();
+  });
 });
