@@ -1,0 +1,521 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
+html,
+body {
+  font-family: "Lilita One", cursive;
+  font-size: 16px;
+
+  /* background-image: url("../img/bgLeft.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto; */
+}
+
+a:hover {
+  color: #b9eaff;
+}
+
+.gray-color {
+  color: #858585;
+}
+
+.bg-gray {
+  background-color: #d9d9d9;
+}
+
+.bg-pink {
+  background-color: #ffebeb;
+}
+.bg-blue {
+  background-color: #b9eaff;
+}
+
+.navbar {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgba(255, 255, 255, 0.616),
+    rgba(255, 255, 255, 0.384),
+    rgba(111, 0, 255, 0)
+  );
+}
+
+.logo {
+  font-size: 2.5rem;
+  margin: 0 3rem;
+  color: #000000;
+}
+
+.navbar-brand {
+  font-size: 4rem;
+}
+
+.navbar-nav {
+  font-size: 2rem;
+  border-radius: 50px;
+  background: #b9eaff;
+}
+
+.nav-link {
+  margin: 0 3rem;
+  color: #000000;
+}
+
+.navbar-nav .nav-link.active {
+  color: #858585;
+  border-radius: 50px;
+  background: #ffebeb;
+  padding: 0 5rem;
+  margin: 8px 8px 8px 0px;
+}
+
+/* Tooltip Modified */
+body.no-hover [data-bs-toggle="popover"] {
+  pointer-events: none; /* Blocks accidental hovers during transition */
+}
+/* Custom Popover Styles */
+.popover {
+  font-family: inherit; /* Inherit body/robot font */
+  font-size: 0.875rem; /* Slightly smaller for cuteness */
+  max-width: 250px; /* Keep it compact */
+  border: none; /* Remove default border */
+  border-radius: 16px; /* Extra rounded for cute */
+  box-shadow: 0 8px 32px rgba(255, 105, 180, 0.3); /* Soft pink glow shadow */
+  background: linear-gradient(
+    135deg,
+    #ffeef8 0%,
+    #f8e8ff 100%
+  ); /* Pastel pink-purple gradient */
+  color: #333; /* Dark text for contrast */
+  padding: 12px 16px; /* More breathing room */
+  animation: popoverFadeIn 0.3s ease-out; /* Smooth entrance */
+  transition: opacity 0.2s ease, transform 0.2s ease; /* Quicker than default 0.15s + animation */
+  z-index: 1071; /* Bump up from Bootstrap's 1070 to avoid stacking under others */
+}
+
+/* Arrow styling - make it cute with gradient match */
+.popover .popover-arrow::after {
+  border-top-color: #ffeef8; /* Matches gradient start */
+  filter: drop-shadow(
+    0 2px 4px rgba(255, 105, 180, 0.2)
+  ); /* Subtle shadow on arrow */
+}
+
+/* Header (if you add titles later) - optional cute header */
+.popover-header {
+  background: linear-gradient(
+    135deg,
+    #ff69b4 0%,
+    #ba55d3 100%
+  ); /* Brighter pink-purple */
+  color: white;
+  border-radius: 12px 12px 0 0;
+  font-weight: bold;
+  text-align: center;
+  margin: -12px -16px 8px -16px; /* Full-width */
+  padding: 8px 16px;
+}
+
+/* Body content - add cute icon */
+.popover-body {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.popover-body::before {
+  content: "✨"; /* Cute sparkle icon before text */
+  /* Or '💖' for heart theme */
+  font-size: 1.2em;
+  margin-right: 8px;
+  display: inline-block;
+  animation: sparkle 1.5s infinite alternate; /* Gentle twinkle */
+}
+
+.popover-body p {
+  margin: 0;
+  line-height: 1.4;
+  font-style: italic; /* Slight italic for whimsy */
+}
+
+/* Hover effect on trigger image for advanced interactivity */
+.feature-img[role="button"]:hover {
+  transform: scale(1.05); /* Subtle zoom */
+  transition: transform 0.2s ease;
+  filter: drop-shadow(
+    0 4px 12px rgba(255, 105, 180, 0.4)
+  ); /* Pink glow on hover */
+}
+
+/* Animations */
+@keyframes popoverFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sparkle {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Heart-specific tweak (for the col-6 heart) */
+.heart {
+  cursor: pointer;
+}
+
+.heart:hover + .popover,
+.heart:focus + .popover {
+  background: linear-gradient(
+    135deg,
+    #ff69b4 0%,
+    #ffc0cb 100%
+  ); /* Hotter pink for heart */
+}
+
+#home {
+  background-image: url("../img/bgLeft.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: auto;
+}
+
+#work {
+  background-image: url("../img/bgRight.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: auto;
+}
+
+#content {
+  margin-top: 130px;
+}
+
+.home-main {
+  margin-bottom: -2rem;
+}
+
+.welcome-text {
+  font-size: 6.2rem;
+  margin: 15rem 0;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.guitar {
+  width: 29%;
+  left: 39%;
+  position: absolute;
+}
+
+.coding {
+  width: 17%;
+  left: 52%;
+  top: -20%;
+  position: absolute;
+}
+
+.camera {
+  width: 27%;
+  left: 60%;
+  top: 15%;
+  position: absolute;
+}
+
+.cards {
+  width: 16%;
+  right: 16%;
+  top: -18%;
+  position: absolute;
+}
+
+.business {
+  width: 18%;
+  right: 8%;
+  top: -10%;
+  position: absolute;
+}
+
+#featured-img {
+  position: relative;
+  margin-top: 15%;
+}
+
+.feature-img {
+  position: absolute;
+  width: 11%;
+  bottom: 100%;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.feature-img:hover {
+  /* width: 50%; */
+  transform: scale(1.2);
+}
+
+.feature-img.heart {
+  width: 18%;
+  right: 0%;
+  top: 80%;
+  position: absolute;
+  animation: 1.5s ease 0s infinite beat;
+}
+
+@keyframes beat {
+  0%,
+  50%,
+  100% {
+    transform: scale(1, 1);
+  }
+  30%,
+  80% {
+    transform: scale(0.92, 0.95);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  50%,
+  100% {
+    background: #fee;
+  }
+  30%,
+  80% {
+    background: #fff;
+  }
+}
+
+.custom-hr {
+  height: 12px;
+  border-top: 5px solid #858585;
+  border-bottom: 5px solid #858585;
+}
+
+#about {
+  margin-top: 5rem;
+}
+
+.about-left {
+  margin-top: 16rem;
+}
+
+.about-text {
+  font-size: 6rem;
+}
+
+.about-info {
+  font-size: 3rem;
+}
+
+.skills {
+  position: relative;
+  z-index: 999;
+}
+
+.clickToSee {
+  position: absolute;
+  width: 65%;
+  margin-top: -14%;
+  margin-left: 5%;
+  --move-distance: 10px;
+  animation: mover 2.3s infinite alternate;
+}
+
+.btn-main {
+  transform: scale(1.2);
+  color: #858585;
+  box-shadow: 0px 5px 4px #b9eaff;
+  border-radius: 50px;
+  background: #ffebeb;
+  /* margin-left: 23rem; */
+  border: none;
+}
+
+.btn-main:hover {
+  transform: scale(1.4);
+  color: #858585;
+  background: #ffebeb;
+}
+
+.funimg {
+  position: relative;
+}
+
+.teehee {
+  position: absolute;
+  width: 25%;
+  margin-top: -24%;
+  margin-left: 15%;
+}
+
+#work {
+  margin-top: 5rem;
+}
+
+.work-card {
+  padding: 5rem 0;
+  box-shadow: 0px 5px 4px #858585;
+  position: relative;
+}
+
+.work-card:hover {
+  transform: scale(1.1);
+}
+
+.work-img {
+  position: absolute;
+  left: 35%;
+  bottom: -15%;
+  z-index: 999;
+  --move-distance: 6px;
+  animation: mover 2.3s infinite alternate;
+}
+
+.work-img:nth-child(even) {
+  animation-direction: alternate-reverse;
+}
+
+@-webkit-keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(var(--move-distance) * -1));
+  }
+}
+
+.subscribe {
+  height: 4rem;
+  border: 0.4rem solid #858585;
+  border-radius: 50px;
+  background-color: #ffebeb;
+  border-right: 0;
+}
+
+.subscribe:focus {
+  background-color: #ffebeb;
+  /* border: 0.4rem solid #d9d9d9; */
+}
+
+.subscribe::placeholder {
+  color: #858585;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.btn-subscribe {
+  padding: 0 3rem;
+  border: 0.4rem solid #858585;
+  border-radius: 50px;
+  color: #000000;
+  background-color: #b9eaff;
+  font-size: 1.5rem;
+  border-left: 0;
+}
+
+.btn-subscribe:hover {
+  background-color: #d9d9d9;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+
+  .welcome-text {
+    font-size: 4rem;
+    margin: 10rem 0;
+  }
+
+  .guitar {
+    width: 30%;
+    left: 39%;
+    top: -23%;
+    position: absolute;
+  }
+
+  .coding {
+    width: 20%;
+    left: 55%;
+    top: -27%;
+    position: absolute;
+  }
+
+  .camera {
+    width: 35%;
+    left: 55%;
+    top: -13%;
+    position: absolute;
+  }
+
+  .cards {
+    width: 20%;
+    right: 5%;
+    top: -27%;
+    position: absolute;
+  }
+
+  .business {
+    width: 25%;
+    right: 0%;
+    top: -20%;
+    position: absolute;
+  }
+
+  #about {
+    margin-top: 5rem;
+  }
+
+  .about-left {
+    margin-top: 1rem;
+  }
+
+  .about-text {
+    font-size: 4rem;
+  }
+
+  .about-info {
+    font-size: 3rem;
+  }
+
+  .clickToSee {
+    position: absolute;
+    width: 90%;
+    margin-top: -5%;
+    margin-left: 15%;
+    animation: mover 2.3s infinite alternate;
+  }
+
+  .teehee {
+    position: absolute;
+    width: 45%;
+    margin-top: -42%;
+    margin-left: -10%;
+  }
+
+  .feature-img.heart {
+    width: 40%;
+    right: 30%;
+    top: 40%;
+    position: absolute;
+    animation: 1.5s ease 0s infinite beat;
+  }
+}
