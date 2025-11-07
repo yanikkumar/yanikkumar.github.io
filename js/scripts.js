@@ -18,12 +18,17 @@ $(document).ready(function () {
     '[data-bs-toggle="tooltip"]'
   );
   const tooltips = []; // Array to store initialized tooltip instances
-  let autoCycleInterval = null; // For auto-show timer
   let isAutoMode = true; // Track if auto-cycle is running
+  const showDuration = 3000; // Time to show each tooltip
+  const pauseAfterHeart = 5000; // Additional wait after Heart
 
   // Function to hide all tooltips
   function hideAllTooltips() {
-    tooltips.forEach((tt) => tt.hide());
+    tooltips.forEach((tt) => {
+      if (tt.getTipElement()) {
+        tt.hide();
+      }
+    });
   }
 
   // Function to show a specific tooltip (hides others first)
@@ -32,6 +37,30 @@ $(document).ready(function () {
     if (tooltips[index]) {
       tooltips[index].show();
     }
+  }
+
+  // Recursive function for auto-cycle
+  function showNext(index) {
+    if (!isAutoMode) return; // Stop if auto mode is off
+
+    showSpecificTooltip(index);
+
+    // Calculate delay to next
+    let nextDelay = showDuration;
+    if (index === tooltips.length - 1) {
+      // After showing Heart
+      nextDelay += pauseAfterHeart; // Add 5s pause after show time
+    }
+
+    // Schedule next after delay
+    setTimeout(() => {
+      if (isAutoMode) {
+        const nextIndex = (index + 1) % tooltips.length;
+        showNext(nextIndex);
+      } else {
+        hideAllTooltips(); // Ensure clean hide on stop
+      }
+    }, nextDelay);
   }
 
   // Initialize tooltips with click support
@@ -50,9 +79,7 @@ $(document).ready(function () {
       hideAllTooltips();
       tooltip.show();
       if (isAutoMode) {
-        // Stop auto-cycle on user interaction
-        clearInterval(autoCycleInterval);
-        isAutoMode = false;
+        isAutoMode = false; // Stop auto-cycle on user interaction
       }
     });
 
@@ -67,26 +94,18 @@ $(document).ready(function () {
     });
   });
 
-  // Auto-show cycle: Show each tooltip for 3 seconds, then next
-  function startAutoCycle() {
-    let currentIndex = 0;
-    const cycleDuration = 3000; // 3 seconds per tooltip
-
-    autoCycleInterval = setInterval(() => {
-      showSpecificTooltip(currentIndex);
-      currentIndex = (currentIndex + 1) % tooltips.length; // Loop back to 0 after last
-    }, cycleDuration);
-
-    // Stop after one full cycle (5 tooltips)
-    setTimeout(() => {
-      clearInterval(autoCycleInterval);
-      hideAllTooltips();
+  // Stop auto on scroll
+  $(window).on("scroll", function () {
+    if (isAutoMode) {
       isAutoMode = false;
-    }, tooltips.length * cycleDuration);
-  }
+      hideAllTooltips();
+    }
+  });
 
-  // Start auto-cycle after a short delay (e.g., 1 second after load for smooth entry)
-  setTimeout(startAutoCycle, 1000);
+  // Start auto-cycle immediately (starts with Developer)
+  if (tooltips.length > 0) {
+    showNext(0);
+  }
 
   // Prevent default on divs if needed (unchanged, but now won't interfere with tooltips)
   $('[role="button"]').on("click", function (e) {
