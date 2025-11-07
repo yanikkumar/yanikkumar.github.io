@@ -71,16 +71,18 @@ a:hover {
   margin: 8px 8px 8px 0px;
 }
 
-/* Tooltip Modified */
-body.no-hover [data-bs-toggle="popover"] {
-  pointer-events: none; /* Blocks accidental hovers during transition */
-}
-/* Custom Popover Styles */
-.popover {
+/* Custom Tooltip Styles - Matching the cute popover design */
+.tooltip {
   font-family: inherit; /* Inherit body/robot font */
   font-size: 0.875rem; /* Slightly smaller for cuteness */
+  z-index: 1080; /* Above Bootstrap's default */
+}
+
+.tooltip .tooltip-inner {
+  font-family: inherit;
+  font-size: 0.875rem;
   max-width: 250px; /* Keep it compact */
-  border: none; /* Remove default border */
+  border: none;
   border-radius: 16px; /* Extra rounded for cute */
   box-shadow: 0 8px 32px rgba(255, 105, 180, 0.3); /* Soft pink glow shadow */
   background: linear-gradient(
@@ -90,54 +92,45 @@ body.no-hover [data-bs-toggle="popover"] {
   ); /* Pastel pink-purple gradient */
   color: #333; /* Dark text for contrast */
   padding: 12px 16px; /* More breathing room */
-  animation: popoverFadeIn 0.3s ease-out; /* Smooth entrance */
-  transition: opacity 0.2s ease, transform 0.2s ease; /* Quicker than default 0.15s + animation */
-  z-index: 1071; /* Bump up from Bootstrap's 1070 to avoid stacking under others */
+  line-height: 1.4;
+  animation: tooltipFadeIn 0.3s ease-out; /* Smooth entrance */
 }
 
-/* Arrow styling - make it cute with gradient match */
-.popover .popover-arrow::after {
-  border-top-color: #ffeef8; /* Matches gradient start */
+/* Tooltip arrow styling - make it cute with gradient match */
+.tooltip .tooltip-arrow::before {
+  border-top-color: #ffeef8; /* Matches gradient start for top placement */
   filter: drop-shadow(
     0 2px 4px rgba(255, 105, 180, 0.2)
   ); /* Subtle shadow on arrow */
 }
 
-/* Header (if you add titles later) - optional cute header */
-.popover-header {
-  background: linear-gradient(
-    135deg,
-    #ff69b4 0%,
-    #ba55d3 100%
-  ); /* Brighter pink-purple */
-  color: white;
-  border-radius: 12px 12px 0 0;
-  font-weight: bold;
-  text-align: center;
-  margin: -12px -16px 8px -16px; /* Full-width */
-  padding: 8px 16px;
+/* Arrow colors for different placements */
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: #ffeef8;
 }
 
-/* Body content - add cute icon */
-.popover-body {
-  position: relative;
-  padding: 0;
-  margin: 0;
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: #ffeef8;
 }
 
-.popover-body::before {
-  content: "✨"; /* Cute sparkle icon before text */
-  /* Or '💖' for heart theme */
-  font-size: 1.2em;
-  margin-right: 8px;
-  display: inline-block;
-  animation: sparkle 1.5s infinite alternate; /* Gentle twinkle */
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+  border-left-color: #ffeef8;
 }
 
-.popover-body p {
-  margin: 0;
-  line-height: 1.4;
-  font-style: italic; /* Slight italic for whimsy */
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+  border-right-color: #ffeef8;
+}
+
+/* Smooth fade-in animation */
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Hover effect on trigger image for advanced interactivity */
@@ -150,17 +143,6 @@ body.no-hover [data-bs-toggle="popover"] {
 }
 
 /* Animations */
-@keyframes popoverFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 @keyframes sparkle {
   from {
     transform: scale(1);
