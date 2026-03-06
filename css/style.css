@@ -565,3 +565,14 @@ a:hover {
 .form-submitting button {
   pointer-events: none;
 }
+
+/* Welcome & Service modals - theme match */
+.modal-content.rounded-4 {
+  font-family: "Lilita One", cursive;
+}
+.modal-body.bg-gray {
+  background-color: #d9d9d9;
+}
+.modal-header[style*="linear-gradient"] {
+  font-family: "Lilita One", cursive;
+}
